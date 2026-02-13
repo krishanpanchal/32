@@ -58,7 +58,6 @@ const ProposeVideo = () => {
         muted
         sx={videoStyle}
       />
-
       <ReturnDialog />
     </Box>
   );
