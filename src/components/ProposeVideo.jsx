@@ -54,7 +54,7 @@ const ProposeVideo = () => {
       <Box
         component="video"
         autoPlay
-        src="/propose.mp4"
+        src="/p.mp4"
         muted
         sx={videoStyle}
       />
