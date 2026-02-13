@@ -3,12 +3,14 @@ import { valentineStore } from "./store";
 import { useNavigate } from "react-router-dom";
 
 const SurpriseDialog = () => {
-  const { surpriseVideo } = valentineStore();
+  const { surpriseVideo} = valentineStore();
   const navigate=useNavigate()
 
   const handleMomentClick=()=>{
     navigate('/pvs')
   }
+
+ 
 
   return (
     <Dialog

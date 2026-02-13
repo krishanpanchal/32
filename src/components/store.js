@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export const valentineStore = create((set) => ({
   yesClicked: false,
+  happy:false,
   dialog: false,
   propose: false,
   activeButton: false,
@@ -11,6 +12,7 @@ export const valentineStore = create((set) => ({
   picheDialog: true,
   picheChale: false,
   proposeTwice: false,
+  setHappy:()=> set({happy:true}),
 setSurpriseButtonToNo:()=>set({surpriseButton:false}),
   setSurpriseVideo: () => set({ surpriseVideo: true }),
   setSurpriseButton: () => set({ surpriseButton: true }),

@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import { valentineStore } from "./store";
 import ReturnDialog from "./ReturnDialog";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const videoStyle = {
   position: "fixed",
@@ -15,8 +15,9 @@ const videoStyle = {
 
 const ProposeVideo = () => {
   const { setPicheChale } = valentineStore((state) => state);
-
   const audioRef = useRef(null);
+  const videoRef = useRef(null);
+  const [loading, setLoading] = useState(true); // Track video loading
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -32,32 +33,57 @@ const ProposeVideo = () => {
             audio.currentTime = 17;
             audio.play();
           },
-          { once: true },
+          { once: true }
         );
       }
     }
 
-    // move timeout inside useEffect ✅
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setPicheChale();
-    }, 30000);
+    }, 42000);
+
+    return () => clearTimeout(timeout); // cleanup
   }, [setPicheChale]);
+
+  // Play audio on mount
   useEffect(() => {
-    audioRef.current.play();
+    audioRef.current?.play();
   }, []);
+
+  // Handle video loaded
+  const handleVideoLoaded = () => {
+    setLoading(false);
+  };
 
   return (
     <Box>
       {/* Hidden audio element */}
       <audio ref={audioRef} src="/music/Nazar.mp3" autoPlay preload="auto" />
 
+      {/* Video */}
+      {loading && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 10,
+          }}
+        >
+          <CircularProgress color="secondary" />
+        </Box>
+      )}
       <Box
         component="video"
+        ref={videoRef}
         autoPlay
-        src="/p.mp4"
         muted
+        src="/p.mov"
         sx={videoStyle}
+        onLoadedData={handleVideoLoaded} // Fires when video is ready
       />
+
       <ReturnDialog />
     </Box>
   );
