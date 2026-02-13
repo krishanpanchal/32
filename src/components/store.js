@@ -1,0 +1,26 @@
+import { create } from "zustand";
+
+export const valentineStore = create((set) => ({
+  yesClicked: false,
+  dialog: false,
+  propose: false,
+  activeButton: false,
+  surpriseButton: false,
+  surpriseVideo: false,
+  thingDialog: false,
+  picheDialog: true,
+  picheChale: false,
+  proposeTwice: false,
+setSurpriseButtonToNo:()=>set({surpriseButton:false}),
+  setSurpriseVideo: () => set({ surpriseVideo: true }),
+  setSurpriseButton: () => set({ surpriseButton: true }),
+  setProposeTwice: () => set({ proposeTwice: true }),
+  setPicheChale: () => set({ picheChale: true }),
+  setPicheDialog: () => set({ picheDialog: true }),
+  setThingDialog: () => set({ thingDialog: true }),
+  setActiveButton: () => set({ activeButton: true }),
+  setYesClickedToNo: () => set({ yesClicked: false }),
+  setProposeClick: () => set({ propose: true }),
+  setYesClicked: () => set({ yesClicked: true }),
+  openDialog: () => set({ dialog: true }),
+}));
